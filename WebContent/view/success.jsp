@@ -9,23 +9,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1> Login Success</h1>
 	<%-- JSP Expression Language --%>
 	<ul>
 		<li>ID : ${customer.id}</li>
 		<li>Name : ${customer.name}</li>
+		<li>Gender : ${customer.gender}</li>
 		<li>Email : ${customer.email}</li>
 	</ul>
 
-	<%--JSTL --%>
-	<table style="border: 1px solid red; paddign: 10px;">
-		<c:forEach var="customer" items="${customerList}">
-			<tr>
-				<td>${customer.name }</td>
-				<td>${customer.id }</td>
-				<td>${customer.email }</td>
-			</tr>
-		</c:forEach>
-
-	</table>
 </body>
 </html>

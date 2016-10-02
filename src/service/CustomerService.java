@@ -9,26 +9,38 @@ public class CustomerService {
 
 	private Map<String, Customer> customers;
 
-	public CustomerService() {
-		//super();
-		// TODO Auto-generated constructor stub
-		customers = new HashMap<String, Customer>();
+	private static final CustomerService instance = new CustomerService();
 
-		addCustomer(new Customer("id001", "Alice","alice.hansung.ac.kr"));
-		addCustomer(new Customer("id002", "Bob","bob.hansung.ac.kr"));
-		addCustomer(new Customer("id003", "Charlie","charlie.hansung.ac.kr"));
-		addCustomer(new Customer("id004", "David","david.hansung.ac.kr"));
-		addCustomer(new Customer("id005", "Trudy","trudy.hansung.ac.kr"));
-		
+	private CustomerService() {
+		customers = new HashMap<String, Customer>();
 	}
-	public void addCustomer(Customer customer){
+
+	public static CustomerService getInstance() {
+		return instance;
+	}
+
+	public void addCustomer(Customer customer) {
 		customers.put(customer.getId(), customer);
 	}
-	public Customer findCustomer(String id){
-		if(id !=null)
-			return(customers.get(id.toLowerCase()));
+
+	public Customer findCustomer(String id) {
+		if (id != null)
+			return (customers.get(id.toLowerCase()));
 		else
 			return null;
 	}
-	
+
+	public Customer login(String id, String password) {
+		Customer rcustomer = instance.findCustomer(id);
+
+		if (rcustomer != null) {
+			if (id.equals(rcustomer.getId()) && password.equals(rcustomer.getPassword())) {
+				return rcustomer;
+			} else {
+				return null;
+			}
+		}
+		return null;
+	}
+
 }
